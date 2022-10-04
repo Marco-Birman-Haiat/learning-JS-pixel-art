@@ -81,3 +81,13 @@ palette.addEventListener('click', function(event) {
     selectedColor.classList.remove('selected')
     event.target.classList.add('selected')
 });
+
+// Atribui aos Pixels o eventListener Click para pintar da cor selecionada
+let pixels = document.getElementsByClassName('pixel');
+for (let index = 0; index < pixels.length; index += 1) {
+    let pixel = pixels[index]
+    pixel.addEventListener('click', function(event) {
+        let currentColor = document.querySelector('.selected').style.backgroundColor
+        event.target.style.backgroundColor = currentColor
+    });
+}
