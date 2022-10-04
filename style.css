@@ -7,6 +7,17 @@ header {
     background-color: orange;
 }
 
+#paletteAndBtn {
+    display: flex;
+    margin: auto;
+    width: 30%;
+    padding-left: 80px;
+}
+
+#button-random-color {
+    margin: auto;
+}
+
 #color-palette {
     height: 80px;
     width: 320px;
