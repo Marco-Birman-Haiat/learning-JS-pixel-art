@@ -91,3 +91,11 @@ for (let index = 0; index < pixels.length; index += 1) {
         event.target.style.backgroundColor = currentColor
     });
 }
+
+function clearBoard () {
+    let pixels = document.getElementsByClassName('pixel');
+    for (let index = 0; index < pixels.length; index += 1) {
+        let pixel = pixels[index];
+        pixel.style.background = 'white'   
+    }
+}

@@ -45,3 +45,9 @@
     width: 40px;
     border: 1px solid black;
 }
+
+#clear-board {
+    margin: auto;
+    align-self: center;
+    text-align: center;
+}
