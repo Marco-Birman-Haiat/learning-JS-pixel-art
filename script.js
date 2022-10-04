@@ -29,14 +29,14 @@ function checkRepeat (array) {
 }
 
 // Salva cores geradas no local storage
-function saveColorLC() {
-    let colorElements = document.getElementsByClassName('color')
-    let colors = [];
-    for (let index = 1; index < array.length; index += 1) {
-        colors.push(colorElements[index].style.backgroundColor);
-    }
-    localStorage.setItem('colorPalette', toString(colors))
-}
+// function saveColorLC() {
+//     let colorElements = document.getElementsByClassName('color')
+//     let colors = [];
+//     for (let index = 1; index < array.length; index += 1) {
+//         colors.push(colorElements[index].style.backgroundColor);
+//     }
+//     localStorage.setItem('colorPalette', toString(colors))
+// }
 
 // Itera sobre os elementos a serem coloridos e atribui as novas cores randomicas
 function generateRandomColors () {
@@ -51,7 +51,19 @@ function generateRandomColors () {
     if (checkRepeat(colorElements)) {
         generateRandomColors();
     }
-    saveColorLC()
+    // saveColorLC()
+}
+
+function generatePixles (side) {
+    const father = document.getElementById('pixel-board');
+
+    for (let index = 0; index < side * side; index += 1) {
+        let pixel = document.createElement('li');
+        pixel.className = 'pixel'
+        pixel.style.background = 'white'
+        father.appendChild(pixel)
+    }
 }
 
 generateRandomColors()
+generatePixles(5)
