@@ -1,0 +1,12 @@
+.header {
+    display: block;
+    text-align: center;
+    background-color: orange;
+}
+
+
+#title {
+    display: list-item;
+    text-align: center;
+    background-color: orange;
+}
