@@ -1,12 +1,21 @@
-.header {
-    display: block;
+#title {
     text-align: center;
     background-color: orange;
 }
 
+#color-pallet {
+    height: 80px;
+    width: 320px;
+    margin: auto;
+    display: flex;
+}
 
-#title {
-    display: list-item;
-    text-align: center;
-    background-color: orange;
+.color {
+    border: 1px solid black;
+    width: 80px;
+    height: 80px;
+}
+
+#fixed-color {
+    background-color: black;
 }
