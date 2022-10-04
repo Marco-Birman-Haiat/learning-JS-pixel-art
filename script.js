@@ -65,5 +65,19 @@ function generatePixles (side) {
     }
 }
 
+function selectColor (event) {
+    const selectedColor = document.querySelector('.selected');
+    selectColor.classList.remove('selected')
+    event.target.classList.add('selected')
+}
+
 generateRandomColors()
 generatePixles(5)
+
+// Atribui as cores o eventListener Click para definir a color com a class Selected
+let palette = document.getElementById('color-palette');
+palette.addEventListener('click', function(event) {
+    let selectedColor = document.querySelector('.selected');
+    selectedColor.classList.remove('selected')
+    event.target.classList.add('selected')
+});
