@@ -29,14 +29,14 @@ function checkRepeat (array) {
 }
 
 // Salva cores geradas no local storage
-// function saveColorLC() {
-//     let colorElements = document.getElementsByClassName('color')
-//     let colors = [];
-//     for (let index = 1; index < array.length; index += 1) {
-//         colors.push(colorElements[index].style.backgroundColor);
-//     }
-//     localStorage.setItem('colorPalette', toString(colors))
-// }
+function saveColorLC() {
+    let colorElements = document.getElementsByClassName('color')
+    let colors = [];
+    for (let index = 1; index < colorElements.length; index += 1) {
+        colors.push(colorElements[index].style.backgroundColor);
+    }
+    localStorage.setItem('colorPalette', colors)
+}
 
 // Itera sobre os elementos a serem coloridos e atribui as novas cores randomicas
 function generateRandomColors () {
@@ -51,7 +51,8 @@ function generateRandomColors () {
     if (checkRepeat(colorElements)) {
         generateRandomColors();
     }
-    // saveColorLC()
+    
+    saveColorLC()
 }
 
 function generatePixles (side) {
