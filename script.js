@@ -1,10 +1,19 @@
 let pixelBoard = {} // esta certo fazer iso
 
-generatePixles(12)
+generatePixles(5)
 recoverPalette()
 recoverPixelBoard()
 
 
+function generateBoardInput(){
+    let input = parseInt(document.getElementById('board-size').value)
+    // Apaga os elementos existentes
+    let pixels = document.getElementsByClassName('pixel');
+    for (let index = pixels.length - 1; index >= 0; index -= 1) {
+        pixels[index].remove();     
+    }
+    generatePixles(parseInt(input))
+}
 
 // Gera quadro de pixels de acordo com input da função
 function generatePixles (side) {
