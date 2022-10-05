@@ -1,10 +1,9 @@
 let pixelBoard = {} // esta certo fazer iso
 
+generatePixles(5)
+recoverPalette()
+recoverPixelBoard()
 
-window.onload = function () {
-    recoverPalette()
-    recoverPixelBoard()
-}
 
 
 // Gera quadro de pixels de acordo com input da função
@@ -20,8 +19,6 @@ function generatePixles (side) {
     }
 }
 
-generatePixles(5)
-
 // -------- Recuperações de dados ----------
 // Recuperação da paleta após loading da página
 function recoverPalette () {
@@ -36,22 +33,27 @@ function recoverPalette () {
 }
 
 function recoverPixelBoard () {
-    if (localStorage.getItem('pixelBoard') == '') {
-        return 1
-    }
-    
-    let pixels = document.getElementsByClassName('pixel')       
-    pixelBoard = JSON.parse(localStorage.getItem('pixelBoard'));
-
-    for (let index = 0; index < pixels.length; index += 1) {
-        let pixel = pixels[index];
-        if (pixelBoard[index] == null) {
-            pixel.style.background = 'white';
+    if (localStorage.getItem('pixelBoard') === null) {
+        localStorage.setItem('pixelBoard', JSON.stringify(pixelBoard));
         } else {
-            pixel.style.background = pixelBoard[index];
+            if (localStorage.getItem('pixelBoard') == '') {
+                return 1
+            }
+            
+            let pixels = document.getElementsByClassName('pixel')       
+            pixelBoard = JSON.parse(localStorage.getItem('pixelBoard'));
+        
+            for (let index = 0; index < pixels.length; index += 1) {
+                let pixel = pixels[index];
+                if (pixelBoard[index] == null) {
+                    pixel.style.background = 'white';
+                } else {
+                    pixel.style.background = pixelBoard[index];
+                }
+            }
+            return 1
         }
     }
-}
 
 // -------- Eventos ------------
 // Atribui as cores o eventListener Click para definir a color com a class Selected
