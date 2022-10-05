@@ -100,3 +100,18 @@ function clearBoard () {
         pixel.style.background = 'white'   
     }
 }
+
+function recoverPalette () {
+    if (localStorage.length !== 0) {
+        let colorElements = document.getElementsByClassName('color')       
+        let savedColors = JSON.parse(localStorage.getItem('colorPalette'));
+        for (let index = 1; index < colorElements.length; index += 1) {
+            element = colorElements[index];
+            element.style.background = savedColors[index];
+        }
+    }
+}
+
+window.onload = function () {
+    recoverPalette()
+}
