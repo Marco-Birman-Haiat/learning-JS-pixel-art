@@ -1,10 +1,13 @@
-header {
+#title {
     background-color: lightgreen;
     top: 0;
+    margin-top: 0;
     left: 0;
     position: fixed;
     width: 100%;
+    height: 60px;
 }
+
 
 #title {
     text-align: center;
