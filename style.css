@@ -19,6 +19,7 @@
     width: 320px;
     margin: auto;
     display: flex;
+    gap: 5px;
 }
 
 .color {
@@ -29,10 +30,7 @@
 
 
 #pixel-board {
-    display: block;
-    list-style-type: disc;
     margin: auto;
-    height: 220px;
     width: 220px;
     padding-top: 50px;
     padding-right: 150px;
@@ -40,7 +38,7 @@
 
 .pixel {
     display: inline-block;
-    margin: auto;
+    vertical-align: top;
     height:  40px;
     width: 40px;
     border: 1px solid black;

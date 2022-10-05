@@ -59,7 +59,7 @@ function generatePixles (side) {
     const father = document.getElementById('pixel-board');
 
     for (let index = 0; index < side * side; index += 1) {
-        let pixel = document.createElement('li');
+        let pixel = document.createElement('div');
         pixel.className = 'pixel'
         pixel.style.background = 'white'
         father.appendChild(pixel)
