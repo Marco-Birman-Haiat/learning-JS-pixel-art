@@ -1,3 +1,13 @@
+let pixelBoard = {} // esta certo fazer iso
+
+
+window.onload = function () {
+    recoverPalette()
+    recoverPixelBoard()
+}
+
+
+// Gera quadro de pixels de acordo com input da função
 function generatePixles (side) {
     const father = document.getElementById('pixel-board');
 
@@ -12,17 +22,38 @@ function generatePixles (side) {
 
 generatePixles(5)
 
-// -------- Eventos --------
-// Alterna a classe selected do antigo para o novo selecionado
-function selectColor (event) {
-    const selectedColor = document.querySelector('.selected');
-    selectColor.classList.remove('selected')
-    event.target.classList.add('selected')
+// -------- Recuperações de dados ----------
+// Recuperação da paleta após loading da página
+function recoverPalette () {
+    if (localStorage.length !== 0) {
+        let colorElements = document.getElementsByClassName('color')       
+        let savedColors = JSON.parse(localStorage.getItem('colorPalette'));
+        for (let index = 1; index < colorElements.length; index += 1) {
+            element = colorElements[index];
+            element.style.background = savedColors[index];
+        }
+    }
 }
 
+function recoverPixelBoard () {
+    if (localStorage.getItem('pixelBoard') == '') {
+        return 1
+    }
+    
+    let pixels = document.getElementsByClassName('pixel')       
+    pixelBoard = JSON.parse(localStorage.getItem('pixelBoard'));
 
+    for (let index = 0; index < pixels.length; index += 1) {
+        let pixel = pixels[index];
+        if (pixelBoard[index] == null) {
+            pixel.style.background = 'white';
+        } else {
+            pixel.style.background = pixelBoard[index];
+        }
+    }
+}
 
-
+// -------- Eventos ------------
 // Atribui as cores o eventListener Click para definir a color com a class Selected
 let palette = document.getElementById('color-palette');
 palette.addEventListener('click', function(event) {
@@ -42,10 +73,15 @@ for (let index = 0; index < pixels.length; index += 1) {
     });
 }
 
+// Alterna a classe selected do antigo para o novo selecionado
+function selectColor (event) {
+    const selectedColor = document.querySelector('.selected');
+    selectColor.classList.remove('selected')
+    event.target.classList.add('selected')
+}
+
+// Deve atualizar o objeto JS pixelBoard em todos os momentos em que houver uma atualização do usuário (terá de ser chamada)
 function updatePixelBoardObject (element) {
-    if (localStorage.getItem('pixelBoard') == null) {
-        localStorage.setItem('pixelBoard', '')
-    }
     let pixelNum = element.id
     let newColor = element.style.backgroundColor
     pixelBoard[pixelNum] = newColor
@@ -61,50 +97,6 @@ function clearBoard () {
     pixelBoard = {}
     localStorage.setItem('pixelBoard', '')
 }
-
-function recoverPalette () {
-    if (localStorage.length !== 0) {
-        let colorElements = document.getElementsByClassName('color')       
-        let savedColors = JSON.parse(localStorage.getItem('colorPalette'));
-        for (let index = 1; index < colorElements.length; index += 1) {
-            element = colorElements[index];
-            element.style.background = savedColors[index];
-        }
-    }
-}
-
-function recoverPixelBoard () {
-    if (localStorage.length !== 0) {
-        let pixels = document.getElementsByClassName('pixel')       
-        let savedPixelBoard = JSON.parse(localStorage.getItem('pixelBoard'));
-
-        for (let index = 1; index < pixels.length; index += 1) {
-            let pixel = pixels[index];
-            if (savedPixelBoard[index] == null) {
-                pixel.style.background = 'white';
-            } else {
-                pixel.style.background = savedPixelBoard[index];
-            }
-        }
-    }
-}
-
-let pixelBoard = {}
-
-if (localStorage.getItem('pixelBoard') !== null) {
-    pixelBoard = {}
-} else {
-    pixelBoard = JSON.parse(localStorage.getItem('pixelBoard'))
-}
-
-window.onload = function () {
-    recoverPalette()
-    recoverPixelBoard()
-}
-
-
-
-
 
 // ------------- Funções para a Geração de cores --------
 // Verifica cores brancas
