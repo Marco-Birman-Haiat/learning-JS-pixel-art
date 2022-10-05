@@ -8,17 +8,19 @@
     <title>Pixels Art</title>
 </head>
 <body>
-    <h1 id="title">Paleta de Cores</h1>
-    <div id="paletteAndBtn">
-        <div id="color-palette">
-            <div class="color selected" id="fixed-color" style="background-color: black;"></div>
-            <div class="color"></div>
-            <div class="color"></div>
-            <div class="color"></div>
-        </div>
-        <button id="button-random-color" onclick="generateRandomColors()">Cores aleatórias</button>
+    <header>
+        <h1 id="title">Paleta de Cores</h1>
+    </header>
+    <div id="color-palette">
+        <div class="color selected" id="fixed-color" style="background-color: black;"></div>
+        <div class="color" style="background-color: yellow;"></div>
+        <div class="color" style="background-color: blue"></div>
+        <div class="color" style="background-color: green"></div>
     </div>
-    <button id="clear-board" onclick="clearBoard()">Limpar</button>
+    <div id="btns-container">
+        <button id="button-random-color" class="button-30" onclick="generateRandomColors()">Cores aleatórias</button>
+        <button id="clear-board" class="button-30" onclick="clearBoard()">Limpar</button>
+    </div>
     <div id="pixel-board"></div>
     <script src="script.js"></script>
 </body>

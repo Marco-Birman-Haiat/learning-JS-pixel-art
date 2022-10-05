@@ -31,11 +31,11 @@ function checkRepeat (array) {
 // Salva cores geradas no local storage
 function saveColorLC() {
     let colorElements = document.getElementsByClassName('color')
-    let colors = [];
+    let colors = {};
     for (let index = 1; index < colorElements.length; index += 1) {
-        colors.push(colorElements[index].style.backgroundColor);
+        colors[index] =  colorElements[index].style.backgroundColor;
     }
-    localStorage.setItem('colorPalette', colors)
+    localStorage.setItem('colorPalette', JSON.stringify(colors))
 }
 
 // Itera sobre os elementos a serem coloridos e atribui as novas cores randomicas
@@ -72,7 +72,7 @@ function selectColor (event) {
     event.target.classList.add('selected')
 }
 
-generateRandomColors()
+
 generatePixles(5)
 
 // Atribui as cores o eventListener Click para definir a color com a class Selected
