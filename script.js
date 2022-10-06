@@ -1,32 +1,57 @@
 let pixelBoard = {} // esta certo fazer iso
 
-generatePixles(5)
+
+if (localStorage.getItem('boardSize') !== null) {
+    recoverBoardSize()
+} else {
+    generatePixles(5)
+}
+
 recoverPalette()
 recoverPixelBoard()
 
 
 function generateBoardInput(){
+    
+    if (document.getElementById('board-size').value == '') {
+        alert('Board inválido!')
+        return 1
+    }
+
     let input = parseInt(document.getElementById('board-size').value)
+
+    if (input < 5) {
+        input = 5
+    }
+
+    if (input > 50) {
+        input = 50
+    }
+    
     // Apaga os elementos existentes
     let pixels = document.getElementsByClassName('pixel');
     for (let index = pixels.length - 1; index >= 0; index -= 1) {
         pixels[index].remove();     
     }
-    generatePixles(parseInt(input))
+    
+    generatePixles(input)
 }
 
 // Gera quadro de pixels de acordo com input da função
 function generatePixles (side) {
-    
     const father = document.getElementById('pixel-board');
-
     let size = 40
 
-    let fatherWidth = `${side * size + size}px`
+    let fatherWidth = `${side * size + side * 2.5}px`
     father.style.width = fatherWidth 
     
     for (let index = 0; index < side * side; index += 1) {
         let pixel = document.createElement('div');
+        // Adiciona novamente o eventListener ao click dos pixels
+        pixel.addEventListener('click', function(event) {
+            let currentColor = document.querySelector('.selected').style.backgroundColor
+            event.target.style.backgroundColor = currentColor
+        });
         pixel.className = 'pixel'
         pixel.id = index
         pixel.style.width = `${size}px`
@@ -34,6 +59,7 @@ function generatePixles (side) {
         pixel.style.background = 'white'
         father.appendChild(pixel)
     }
+    saveBoardSize(side)
 }
 
 // -------- Recuperações de dados ----------
@@ -71,6 +97,16 @@ function recoverPixelBoard () {
             return 1
         }
     }
+
+
+function recoverBoardSize() {
+    if (localStorage.getItem('boardSize') === null) {
+        localStorage.setItem('boardSize', '5')
+        return 1
+    }
+    let savedSize = parseInt(localStorage.getItem('boardSize'))
+    generatePixles(savedSize)
+}
 
 // -------- Eventos ------------
 // Atribui as cores o eventListener Click para definir a color com a class Selected
@@ -113,6 +149,7 @@ function clearBoard () {
         let pixel = pixels[index];
         pixel.style.background = 'white'   
     }
+    
     pixelBoard = {}
     localStorage.setItem('pixelBoard', '')
 }
@@ -176,4 +213,12 @@ function saveColorLC() {
         colors[index] =  colorElements[index].style.backgroundColor;
     }
     localStorage.setItem('colorPalette', JSON.stringify(colors))
+}
+
+function saveBoardSize (size) {
+    if (localStorage.getItem('boardSize') === null) {
+        localStorage.setItem('boardSize', toString(size))
+        return 1
+    }
+    localStorage.setItem('boardSize', JSON.stringify(size))
 }
