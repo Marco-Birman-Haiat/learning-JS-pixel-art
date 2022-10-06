@@ -7,8 +7,19 @@ if (localStorage.getItem('boardSize') !== null) {
     generatePixles(5)
 }
 
-recoverPalette()
-recoverPixelBoard()
+if (localStorage.getItem('colorpalette') !== null) {
+    recoverPalette()
+} else {
+    localStorage.getItem('colorpalette', '{}')
+}
+
+if (localStorage.getItem('pixelBoard') !== null) {
+    recoverPixelBoard()
+} else {
+    localStorage.getItem('colorpalette', '{}')
+}
+
+
 
 
 function generateBoardInput(){
@@ -33,7 +44,7 @@ function generateBoardInput(){
     for (let index = pixels.length - 1; index >= 0; index -= 1) {
         pixels[index].remove();     
     }
-    
+    clearBoard()
     generatePixles(input)
 }
 
@@ -88,10 +99,10 @@ function recoverPixelBoard () {
         
             for (let index = 0; index < pixels.length; index += 1) {
                 let pixel = pixels[index];
-                if (pixelBoard[index] == null) {
+                if (pixelBoard[`${index}`] == null) {
                     pixel.style.background = 'white';
                 } else {
-                    pixel.style.background = pixelBoard[index];
+                    pixel.style.background = pixelBoard[`${index}`];
                 }
             }
             return 1
@@ -210,7 +221,7 @@ function saveColorLC() {
     let colorElements = document.getElementsByClassName('color')
     let colors = {};
     for (let index = 1; index < colorElements.length; index += 1) {
-        colors[index] =  colorElements[index].style.backgroundColor;
+        colors[`${index}`] =  colorElements[index].style.backgroundColor;
     }
     localStorage.setItem('colorPalette', JSON.stringify(colors))
 }
