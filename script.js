@@ -7,16 +7,16 @@ if (localStorage.getItem('boardSize') !== null) {
     generatePixles(5)
 }
 
-if (localStorage.getItem('colorpalette') !== null) {
+if (localStorage.getItem('colorPalette') !== null) {
     recoverPalette()
 } else {
-    localStorage.getItem('colorpalette', '{}')
+    localStorage.getItem('colorPalette', '{}')
 }
 
 if (localStorage.getItem('pixelBoard') !== null) {
     recoverPixelBoard()
 } else {
-    localStorage.getItem('colorpalette', '{}')
+    localStorage.getItem('colorPalette', '{}')
 }
 
 
@@ -46,6 +46,7 @@ function generateBoardInput(){
     }
     clearBoard()
     generatePixles(input)
+    saveBoardSize(input)
 }
 
 // Gera quadro de pixels de acordo com input da função
@@ -70,7 +71,6 @@ function generatePixles (side) {
         pixel.style.background = 'white'
         father.appendChild(pixel)
     }
-    saveBoardSize(side)
 }
 
 // -------- Recuperações de dados ----------
@@ -228,8 +228,8 @@ function saveColorLC() {
 
 function saveBoardSize (size) {
     if (localStorage.getItem('boardSize') === null) {
-        localStorage.setItem('boardSize', toString(size))
+        localStorage.setItem('boardSize', JSON.parse(size))
         return 1
     }
-    localStorage.setItem('boardSize', JSON.stringify(size))
+    localStorage.setItem('boardSize', JSON.parse(size))
 }
