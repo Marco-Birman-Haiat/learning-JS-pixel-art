@@ -1,24 +1,16 @@
 import { getStorageData } from './utils/storage.js';
+import { generatePixleBoard, paintPixelBoard } from './utils/pixelBoard.js';
+import { placeCollorOnElements } from './utils/collorPalette.js';
 
 const { boardSize, colorPalette, pixelBoard } = getStorageData();
 
 function initializeApplication() {
-  console.log('oi');
+  generatePixleBoard(boardSize || 5);
+  placeCollorOnElements(colorPalette);
+  paintPixelBoard(pixelBoard);
 }
 
 initializeApplication();
-
-if (localStorage.getItem('boardSize') !== null) {
-  recoverBoardSize();
-} else {
-  generatePixles(5);
-}
-
-if (localStorage.getItem('colorPalette') !== null) {
-  recoverPalette();
-} else {
-  localStorage.getItem('colorPalette', '{}');
-}
 
 if (localStorage.getItem('pixelBoard') !== null) {
   recoverPixelBoard();
@@ -53,42 +45,9 @@ function generateBoardInput() {
 }
 
 // Gera quadro de pixels de acordo com input da função
-function generatePixles(side) {
-  const father = document.getElementById('pixel-board');
-  let size = 40;
-
-  let fatherWidth = `${side * size + side * 2.5}px`;
-  father.style.width = fatherWidth;
-
-  for (let index = 0; index < side * side; index += 1) {
-    let pixel = document.createElement('div');
-    // Adiciona novamente o eventListener ao click dos pixels
-    pixel.addEventListener('click', function (event) {
-      let currentColor =
-        document.querySelector('.selected').style.backgroundColor;
-      event.target.style.backgroundColor = currentColor;
-    });
-    pixel.className = 'pixel';
-    pixel.id = index;
-    pixel.style.width = `${size}px`;
-    pixel.style.height = `${size}px`;
-    pixel.style.background = 'white';
-    father.appendChild(pixel);
-  }
-}
 
 // -------- Recuperações de dados ----------
 // Recuperação da paleta após loading da página
-function recoverPalette() {
-  if (localStorage.length !== 0) {
-    let colorElements = document.getElementsByClassName('color');
-    let savedColors = JSON.parse(localStorage.getItem('colorPalette'));
-    for (let index = 1; index < colorElements.length; index += 1) {
-      element = colorElements[index];
-      element.style.background = savedColors[index];
-    }
-  }
-}
 
 function recoverPixelBoard() {
   if (localStorage.getItem('pixelBoard') === null) {
@@ -111,15 +70,6 @@ function recoverPixelBoard() {
     }
     return 1;
   }
-}
-
-function recoverBoardSize() {
-  if (localStorage.getItem('boardSize') === null) {
-    localStorage.setItem('boardSize', '5');
-    return 1;
-  }
-  let savedSize = parseInt(localStorage.getItem('boardSize'));
-  generatePixles(savedSize);
 }
 
 // -------- Eventos ------------
