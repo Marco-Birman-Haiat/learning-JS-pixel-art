@@ -11,20 +11,22 @@ export function handlePixleClick({ target }) {
   updatePixelBoardObject(target);
 }
 
-function createAndPlacePixel(father, index) {
+function createAndPlacePixel(fatherOfPixels, row, column, side) {
   const pixel = document.createElement('div');
+  const pixelIndex = row * side + column;
   pixel.addEventListener('click', (event) => handlePixleClick(event));
   pixel.className = 'pixel';
-  pixel.id = index;
+  pixel.id = pixelIndex;
   pixel.style.background = 'white';
-  father.appendChild(pixel);
+  fatherOfPixels.appendChild(pixel);
 }
 
-function createAndPlacePixelRow(fatherOfRows, side, index) {
+function createAndPlacePixelRow(fatherOfRows, side, row) {
   const fatherOfPixels = document.createElement('li');
-  
-  for (let index = 0; index < side; index += 1) {
-    createAndPlacePixel(fatherOfPixels, index);
+  fatherOfPixels.className = 'pixel-row';
+
+  for (let column = 0; column < side; column += 1) {
+    createAndPlacePixel(fatherOfPixels, row, column, side);
   }
 
   fatherOfRows.appendChild(fatherOfPixels);
