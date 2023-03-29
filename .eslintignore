@@ -1,10 +1,5 @@
-src/data.js
-src/*.js
-src/*.css
-src/components/*
-src/services/*
 coverage/*
-src/serviceWorker.js
+src/script.js
+src/utils/*
 node_modules/
 reports/
-cypress/

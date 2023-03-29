@@ -1,50 +1,63 @@
-#title {
-    background-color: lightgreen;
-    top: 0;
-    margin-top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@100;300;400&display=swap');
+
+/* * {
+  border: 1px solid red;
+} */
+
+body {
+  margin: 0;
 }
 
-
-#title {
-    text-align: center;
+header {
+  background-color: rgb(49, 72, 102);
+  border: none;
+  margin-top: 0;
+  padding: 20px 0;
 }
 
-#button-random-color {
-    margin: auto;
+#title {
+  text-align: center;
+  margin: 0;
+  font-family:'Press Start 2P';
+  color: #f6f6f8;
 }
 
 #color-palette {
-    width: 320px;
-    margin: auto;
-    padding-top: 20px;
-    display: flex;
-    gap: 5px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .color {
-    border: 1px solid black;
-    width: 80px;
-    height: 80px;
+  border: 0.5px solid rgb(169, 169, 169);
+  width: 50px;
+  height: 50px;
+  border-radius: 7px;
+  /* complementar com efeitos */
 }
 
 
 #pixel-board {
-    margin: auto;
-    width: 220px;
-    margin-top: 35px;
+  margin: auto;
+  width: fit-content;
+  padding: 0;
+  margin-top: 35px;
+  margin-bottom: 50px;
+  list-style-type: none;
+  border: 0.5px solid rgb(70, 70, 70);
 }
 
 .pixel {
-    display: inline-block;
-    vertical-align: top;
-    border: 1px solid black;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  vertical-align: top;
+  border: 0.5px solid rgb(113, 113, 113);
 }
 
 #btns-container {
-    padding-top: 50px;
+    padding-top: 30px;
     margin: auto;
     align-self: center;
     text-align: center;
