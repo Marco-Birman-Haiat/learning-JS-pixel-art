@@ -1,5 +1,9 @@
-export default function teste() {
-  return 'oi';
+export function updatePixelBoardObject(element, pixelBoard) {
+  const pixelNum = element.id;
+  const newColor = element.style.backgroundColor;
+
+  pixelBoard[pixelNum] = newColor;
+  localStorage.setItem('pixelBoard', JSON.stringify(pixelBoard));
 }
 
 export function getStorageData() {

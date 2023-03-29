@@ -34,3 +34,10 @@ export function paintPixelBoard(pixelBoard) {
     }
   }
 }
+
+export function removeAllPixels() {
+  const pixels = document.getElementsByClassName('pixel');
+  for (let index = pixels.length - 1; index >= 0; index -= 1) {
+    pixels[index].remove();
+  }
+}
