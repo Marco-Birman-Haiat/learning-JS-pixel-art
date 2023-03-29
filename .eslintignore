@@ -1,5 +1,5 @@
 coverage/*
-src/script.js
-src/utils/*
+docs/src/script.js
+docs/src/utils/*
 node_modules/
 reports/
