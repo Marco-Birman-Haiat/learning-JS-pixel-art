@@ -1,8 +1,8 @@
 import { getStorageData } from './utils/storage.js';
 import { generatePixleBoard, paintPixelBoard } from './utils/pixelBoard.js';
-import { placeCollorOnElements } from './utils/collorPalette.js';
+import { generateRandomColors, placeCollorOnElements } from './utils/collorPalette.js';
 import { handleCustomBoardGeneration,
-  handleColorSelect, handlePixleClick, resetBoardColors } from './utils/eventFunctions.js';
+  handleColorSelect, resetBoardColors } from './utils/eventFunctions.js';
 
 function initializeApplication() {
   const { boardSize, colorPalette, pixelBoard } = getStorageData();
@@ -12,19 +12,17 @@ function initializeApplication() {
 }
 
 function addListeners() {
-  const customBoarButton = document.getElementById('generate-board');
+  const customBoardButton = document.getElementById('generate-board');
   const colorHolders = document.getElementsByClassName('color');
-  const pixels = document.getElementsByClassName('pixel');
   const resetBoardColorButton = document.getElementById('clear-board');
+  const randomColorButtton = document.getElementById('button-random-color');
 
-  customBoarButton.addEventListener('click', () => handleCustomBoardGeneration());
+  customBoardButton.addEventListener('click', () => handleCustomBoardGeneration());
   Array.from(colorHolders).forEach((colorHolder) => {
     colorHolder.addEventListener('click', (event) => handleColorSelect(event));
   });
-  Array.from(pixels).forEach((pixel) => {
-    pixel.addEventListener('click', () => handlePixleClick());
-  });
   resetBoardColorButton.addEventListener('click', () => resetBoardColors());
+  randomColorButtton.addEventListener('click', () => generateRandomColors());
 }
 
 initializeApplication();

@@ -1,7 +1,7 @@
 import { generatePixleBoard, removeAllPixels } from './pixelBoard.js';
+import { saveInStorage } from './storage.js';
 
 export function handleColorSelect(event) {
-  console.log('selecionou cor');
   const previousSelection = document.querySelector('.selected');
   previousSelection.classList.remove('selected');
   event.target.classList.add('selected');
@@ -13,13 +13,7 @@ export function resetBoardColors() {
     const pixel = pixels[index];
     pixel.style.background = 'white';
   }
-  localStorage.setItem('pixelBoard', '');
-}
-
-export function handlePixleClick(event) {
-  const currentSelectedColor = document.querySelector('.selected').style.backgroundColor;
-  event.target.style.backgroundColor = currentSelectedColor;
-  updatePixelBoardObject(event.target);
+  saveInStorage('', 'pixelBoard');
 }
 
 export function handleCustomBoardGeneration() {
@@ -39,5 +33,5 @@ export function handleCustomBoardGeneration() {
   removeAllPixels();
   resetBoardColors();
   generatePixleBoard(inputNumberValue);
-  saveBoardSize(inputNumberValue);
+  saveInStorage(inputNumberValue, 'boardSize');
 }

@@ -1,11 +1,16 @@
-function pixelEvent({ target }) {
-  const currentColor = document.querySelector('.selected').style.backgroundColor;
-  target.style.backgroundColor = currentColor;
+export function handlePixleClick({ target }) {
+  const currentSelectedColor = document.querySelector('.selected').style.backgroundColor;
+
+  if (target.style.backgroundColor === currentSelectedColor) {
+    target.style.backgroundColor = 'white';
+  } else {
+    target.style.backgroundColor = currentSelectedColor;
+  }
 }
 
 function createAndPlacePixel(father, index) {
   const pixel = document.createElement('div');
-  pixel.addEventListener('click', (event) => pixelEvent(event));
+  pixel.addEventListener('click', (event) => handlePixleClick(event));
   pixel.className = 'pixel';
   pixel.id = index;
   pixel.style.background = 'white';

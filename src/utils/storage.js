@@ -13,3 +13,7 @@ export function getStorageData() {
 
   return { boardSize, colorPalette, pixelBoard };
 }
+
+export function saveInStorage(value, type) {
+  localStorage.setItem(type, value);
+}
