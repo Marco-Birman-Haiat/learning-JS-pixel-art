@@ -20,11 +20,21 @@ function createAndPlacePixel(father, index) {
   father.appendChild(pixel);
 }
 
-export function generatePixleBoard(side) {
-  const father = document.getElementById('pixel-board');
+function createAndPlacePixelRow(fatherOfRows, side, index) {
+  const fatherOfPixels = document.createElement('li');
+  
+  for (let index = 0; index < side; index += 1) {
+    createAndPlacePixel(fatherOfPixels, index);
+  }
 
-  for (let index = 0; index < side * side; index += 1) {
-    createAndPlacePixel(father, index);
+  fatherOfRows.appendChild(fatherOfPixels);
+}
+
+export function generatePixleBoard(side) {
+  const fatherOfRows = document.getElementById('pixel-board');
+
+  for (let row = 0; row < side; row += 1) {
+    createAndPlacePixelRow(fatherOfRows, side, row);
   }
 }
 
