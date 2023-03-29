@@ -13,21 +13,22 @@ export function resetBoardColors() {
     const pixel = pixels[index];
     pixel.style.background = 'white';
   }
-  saveInStorage('', 'pixelBoard');
+  saveInStorage({}, 'pixelBoard');
 }
 
 export function handleCustomBoardGeneration() {
   const customSizeInput = document.getElementById('board-size').value;
-  const inputNumberValue = Number(customSizeInput);
+  let inputNumberValue = Number(customSizeInput);
 
-  if (customSizeInput === 0) {
+  if (customSizeInput === '') {
     alert('Board inválido!');
+    return;
   }
   if (inputNumberValue < 5) {
-    generatePixleBoard(5);
+    inputNumberValue = 5;
   }
   if (inputNumberValue > 50) {
-    generatePixleBoard(50);
+    inputNumberValue = 50;
   }
 
   removeAllPixels();

@@ -1,3 +1,5 @@
+import { updatePixelBoardObject } from './storage.js';
+
 export function handlePixleClick({ target }) {
   const currentSelectedColor = document.querySelector('.selected').style.backgroundColor;
 
@@ -6,6 +8,7 @@ export function handlePixleClick({ target }) {
   } else {
     target.style.backgroundColor = currentSelectedColor;
   }
+  updatePixelBoardObject(target);
 }
 
 function createAndPlacePixel(father, index) {
@@ -35,7 +38,7 @@ export function paintPixelBoard(pixelBoard) {
 
   if (pixelBoard !== null && pixelBoard !== '') {
     for (let index = 0; index < pixels.length; index += 1) {
-      paintPixel(pixelBoard, pixels, index);
+      paintPixel(JSON.parse(pixelBoard), pixels, index);
     }
   }
 }

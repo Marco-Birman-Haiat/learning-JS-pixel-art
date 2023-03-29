@@ -1,5 +1,5 @@
 coverage/*
-src/serviceWorker.js
+src/script.js
+src/utils/*
 node_modules/
 reports/
-cypress/
