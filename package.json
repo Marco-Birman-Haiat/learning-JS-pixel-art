@@ -16,6 +16,7 @@
     "stylelint": "13.8.0",
     "stylelint-config-standard": "20.0.0"
   },
+  "homepage": "https://marco-birman-haiat.github.io/learning-js-pixel-art",
   "scripts": {
     "test": "cypress run",
     "lint": "eslint --no-inline-config --ext .js,.jsx --no-error-on-unmatched-pattern -c .eslintrc.json .",
